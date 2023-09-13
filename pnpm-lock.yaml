@@ -11,6 +11,9 @@ dependencies:
   firebase-admin:
     specifier: ^11.10.1
     version: 11.10.1
+  papercss:
+    specifier: ^1.9.2
+    version: 1.9.2
   zod:
     specifier: ^3.22.2
     version: 3.22.2
@@ -2970,6 +2973,10 @@ packages:
     dependencies:
       p-limit: 3.1.0
     dev: true
+
+  /papercss@1.9.2:
+    resolution: {integrity: sha512-6pOXUbuNgjdufXu4F34BYCXzel0YyB25FS9jWwq38PWEyzcWU3SWUneCHmvM5zUK7omCQ2/VdMXf8hlJC73/mA==}
+    dev: false
 
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
