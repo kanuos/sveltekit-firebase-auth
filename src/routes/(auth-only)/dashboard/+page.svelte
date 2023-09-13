@@ -1,73 +1,34 @@
 <script lang="ts">
-	let currentTab = 0; // 0 - show admin info 1 - change password
-
-	$: getBtnClass = (index: number) => {
-		return currentTab === index ? 'primary' : 'secondary';
-	};
-
-	const buttons = ['My profile', 'Change password'];
+	import type { LayoutParentData } from '../$types';
+	export let data: LayoutParentData;
 </script>
 
-<article>
-	<section class="grid">
-		{#each buttons as btn, i (i)}
-			<button on:click={() => (currentTab = i)} class="outline {getBtnClass(i)}">{btn}</button>
-		{/each}
-	</section>
-	<hr />
+<svelte:head>
+	<title>ADMIN dashboard</title>
+</svelte:head>
 
-	{#if currentTab === 0}
-		<h1>Welcome admin</h1>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, voluptatem explicabo blanditiis
-			mollitia id nam ex nisi ipsam rerum, earum enim! Delectus fugiat necessitatibus et.
-		</p>
-	{:else if currentTab === 1}
-		<h1>Change password</h1>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, libero?</p>
-		<form>
-			<section>
-				<label for="password">Password</label>
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="*******"
-					required
-					autocomplete="bday-day"
-				/>
-				<small>We'll never share your email with anyone else.</small>
-			</section>
-			<section>
-				<label for="confirm-password">Confirm Password</label>
-				<input
-					type="password"
-					id="confirm-password"
-					name="confirm-password"
-					placeholder="*******"
-					required
-					autocomplete="bday-day"
-				/>
-				<small>We'll never share your email with anyone else.</small>
-			</section>
-
-			<!-- Button -->
-			<button type="submit">Submit</button>
-		</form>
-	{/if}
+<article class="margin-top-large text-center">
+	<h1>Welcome admin</h1>
+	<p class="article-meta">{data.email}</p>
+	<p class="text-lead">This page denotes the dashboard.</p>
+	<p>
+		Only select users i.e ADMINs will have access to this page. You can add any form or admin
+		specific content on this page. No unauthenticated user can access this page. Since this page is
+		being rendered using SSR - there's not even a slight flash of unauthenticated content or FOUC.
+	</p>
+	<br />
+	<p>
+		If an unauthenticated user pretending to be an ADMIN of the site attempts to access the
+		dashboard directly - user gets redirected to the login page.
+	</p>
+	<figure>
+		<img
+			src="https://source.unsplash.com/random/900×700/"
+			alt="Random pic from unsplash"
+			loading="lazy"
+		/>
+		<figcaption class="margin-top article-meta">
+			A random image only ADMIN can access. Try refreshing to change the image ☺️
+		</figcaption>
+	</figure>
 </article>
-
-<style>
-	article {
-		min-height: 90%;
-		margin-bottom: auto;
-	}
-
-	section.grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-	}
-	hr {
-		margin-bottom: 2rem;
-	}
-</style>

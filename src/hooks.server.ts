@@ -31,6 +31,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         const tokenFromCookie = event.cookies.get(PUBLIC_COOKIE_NAME);
         const currentUser = fireClient.auth.currentUser;
 
+
         if (!tokenFromCookie) {
             throw new Error('No token found in cookies');
         }
@@ -40,11 +41,12 @@ export const handle: Handle = async ({ event, resolve }) => {
         }
 
         if (tokenFromCookie && currentUser) {
-            const isValidToken = (await fireAdmin.verifyIdToken(tokenFromCookie)).uid === currentUser?.uid;
+            const customClaims = await fireAdmin.verifyIdToken(tokenFromCookie)
+            const isValidToken = customClaims.uid === currentUser?.uid;
             if (!isValidToken) {
                 throw new Error('Invalid token');
             }
-            event.locals.user = { email: currentUser.email as string, uid: currentUser.uid };
+            event.locals.user = { email: currentUser.email as string, uid: currentUser.uid, superuser: Boolean(customClaims.superuser) };
         } else {
             // not authorized - either token doesnt exist in cookie or currentUser is null
             // or cookie exists - corrupted
