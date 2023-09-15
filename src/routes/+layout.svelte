@@ -2,10 +2,11 @@
 <script lang="ts">
 	import 'papercss/dist/paper.min.css';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import type { LayoutData } from './$types';
+	import type { LayoutServerData } from './$types';
 
-	export let data: LayoutData;
-	const { navType } = data;
+	export let data: LayoutServerData;
+	
+	$: ({ navType } = data)
 </script>
 
 <Navbar {navType} />

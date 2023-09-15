@@ -4,6 +4,9 @@
 	import { URL_Patterns } from '$lib/constants';
 
 	export let form: ActionData;
+
+	$: msg = form?.message
+
 </script>
 
 <svelte:head>
@@ -13,10 +16,10 @@
 <article>
 	<h1>Login</h1>
 
-	{#if form?.message}
+	{#if msg}
 		<input class="alert-state" id="alert-5" type="checkbox" />
 		<div class="alert alert-danger dismissible">
-			{form.message}
+			{msg}
 			<label class="btn-close" for="alert-5">&times;</label>
 		</div>
 	{/if}

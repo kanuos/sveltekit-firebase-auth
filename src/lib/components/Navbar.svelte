@@ -23,14 +23,10 @@
 					<li><a href={URL_Patterns.login}>Login</a></li>
 					<!-- user is authenticated -->
 				{:else}
-					<!-- only superuser can manage other admins -->
-					{#if navType === NavType.superuser}
-						<li><a href={URL_Patterns.manageAdminPage}>Manage users</a></li>
-					{/if}
-					<!-- all admins and the superuser can operate the following operations -->
-					<li><a href={URL_Patterns.updatePasswordPage}>Update Password</a></li>
+				<!-- all admins and the superuser can operate the following operations -->
+					<li><a href={URL_Patterns.dashboard}>Dashboard</a></li>
 					<li>
-						<form action={URL_Patterns.logoutAction}>
+						<form action={URL_Patterns.logoutAction} method="post">
 							<button type="submit"> Logout </button>
 						</form>
 					</li>

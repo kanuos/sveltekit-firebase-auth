@@ -4,18 +4,13 @@ import { NavType } from "$lib/constants"
 
 export const load: LayoutServerLoad = async ({ locals }) => {
     const { user } = locals
-
-    // not authenticated user
-    if (!user) {
-        return { navType: NavType.public, email: null }
-    }
+    let loadData: { navType: NavType, email: string | null } = { navType: NavType.public, email: null };
 
     // authenticated and authorized superuser is logged in
-    if (user.superuser) {
-        return { navType: NavType.superuser, email: user.email }
-
+    if (user) {
+        loadData.email = user.email;
+        loadData.navType = user.superuser ? NavType.superuser : NavType.admin
     }
-
     // any non superuser admin is logged in
-    return { navType: NavType.admin, email: user.email }
+    return loadData
 };
