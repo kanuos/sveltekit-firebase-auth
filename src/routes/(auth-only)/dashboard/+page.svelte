@@ -1,16 +1,27 @@
 <script lang="ts">
 	import AdminHome from '$lib/components/AdminHome.svelte';
+	import ManageAdmin from '$lib/components/ManageAdmin.svelte';
 	import UpdatePassword from '$lib/components/UpdatePassword.svelte';
-	import type { LayoutParentData } from '../$types';
-	import type { ActionData } from './$types';
-	
-	
-	export let data: LayoutParentData;
-	export let form: ActionData
+	import { NavType } from '$lib/constants';
+	import type { ActionData, PageData } from './$types';
 
-	$: message = form?.message || []
-	$: success = form?.success || false
+	export let form: ActionData;
+	export let data: PageData;
 
+	// reactive state to be passed as props to update password form
+	$: updatePasswordMessage = form?.updatePassword?.message || ([] as string[]);
+	$: updatePasswordSuccess = form?.updatePassword?.success || false;
+	
+	// reactive state to be passed as props to add admin form
+	$: addAdminMessage = form?.addAdmin?.message || ([] as string[]);
+	$: addAdminSuccess = form?.addAdmin?.success || false;
+	
+	// reactive state to be passed as props to delete admin form
+	$: deleteAdminMessage = form?.deleteAdmin?.message || ([] as string[])
+	$: deleteAdminSuccess = form?.deleteAdmin?.success || false;
+
+	// this variable detects whether the logged in user is superuser and has superuser privileges
+	$: isSuperUser = data.navType === NavType.superuser;
 </script>
 
 <svelte:head>
@@ -26,12 +37,28 @@
 		<label for="tab1">Home</label>
 		<input id="tab2" type="radio" name="tabs" />
 		<label for="tab2">Update Password</label>
+
+		{#if isSuperUser}
+			<input id="tab3" type="radio" name="tabs" />
+			<label for="tab3">Manage Admins</label>
+		{/if}
 		<div class="content" id="content1">
 			<AdminHome />
 		</div>
 		<div class="content" id="content2">
-			<UpdatePassword {message} {success}/>
+			<UpdatePassword message={updatePasswordMessage} success={updatePasswordSuccess} />
 		</div>
+		{#if isSuperUser}
+			<div class="content" id="content3">
+				<ManageAdmin
+					existingAdmins={data.adminList}
+					{isSuperUser}
+					{addAdminMessage}
+					{addAdminSuccess}
+					{deleteAdminMessage}
+					{deleteAdminSuccess}
+				/>
+			</div>
+		{/if}
 	</div>
 </article>
-

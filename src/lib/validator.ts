@@ -3,13 +3,15 @@ import { ZodString, z } from 'zod';
 export const EmailValidator = z
     .string({ required_error: 'Email is required' })
     .trim()
+    .nonempty({ message: "Email cannot be empty"})
     .email({ message: 'Invalid email ID' })
     .toLowerCase();
-
-function generatePasswordValidator(fieldName: string = 'Password'): ZodString {
-    return z
+    
+    function generatePasswordValidator(fieldName: string = 'Password'): ZodString {
+        return z
         .string({ required_error: `${fieldName} is required` })
         .trim()
+        .nonempty({ message: fieldName + " cannot be empty"})
         .min(6, { message: `${fieldName} should contain at least 6 character` })
         .max(25, { message: `${fieldName} should contain no more than 25 characters` });
 }

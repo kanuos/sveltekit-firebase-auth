@@ -24,3 +24,10 @@ export enum NavType {
     admin,
     superuser
 }
+
+export type AdminType = {
+    email: string;
+    uid: string;
+    superuser: boolean,
+    date: string
+}
