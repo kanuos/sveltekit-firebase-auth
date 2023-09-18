@@ -81,7 +81,7 @@
 					autocomplete="off"
 				/>
 			</section>
-			<input type="hidden" name="code" value={data.code}>
+			<input type="hidden" name="code" value={data.code} />
 		{:else}
 			<section class="form-group">
 				<label for="email">Email address</label>

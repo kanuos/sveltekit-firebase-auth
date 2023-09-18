@@ -5,8 +5,7 @@
 
 	export let form: ActionData;
 
-	$: msg = form?.message
-
+	$: msg = form?.message;
 </script>
 
 <svelte:head>

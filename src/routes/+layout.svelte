@@ -5,8 +5,8 @@
 	import type { LayoutServerData } from './$types';
 
 	export let data: LayoutServerData;
-	
-	$: ({ navType } = data)
+
+	$: ({ navType } = data);
 </script>
 
 <Navbar {navType} />

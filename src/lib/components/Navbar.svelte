@@ -23,7 +23,7 @@
 					<li><a href={URL_Patterns.login}>Login</a></li>
 					<!-- user is authenticated -->
 				{:else}
-				<!-- all admins and the superuser can operate the following operations -->
+					<!-- all admins and the superuser can operate the following operations -->
 					<li><a href={URL_Patterns.dashboard}>Dashboard</a></li>
 					<li>
 						<form action={URL_Patterns.logoutAction} method="post">

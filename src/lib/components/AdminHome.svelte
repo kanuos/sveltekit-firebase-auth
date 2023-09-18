@@ -2,7 +2,6 @@
 	Only select users i.e ADMINs will have access to this page. You can add any form or admin specific
 	content on this page. No unauthenticated user can access this page. Since this page is being
 	rendered using SSR - there's not even a slight flash of unauthenticated content or FOUC.
-	
 </p>
 <figure class="margin-top-large">
 	<img

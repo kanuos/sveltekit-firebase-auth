@@ -11,13 +11,13 @@
 	// reactive state to be passed as props to update password form
 	$: updatePasswordMessage = form?.updatePassword?.message || ([] as string[]);
 	$: updatePasswordSuccess = form?.updatePassword?.success || false;
-	
+
 	// reactive state to be passed as props to add admin form
 	$: addAdminMessage = form?.addAdmin?.message || ([] as string[]);
 	$: addAdminSuccess = form?.addAdmin?.success || false;
-	
+
 	// reactive state to be passed as props to delete admin form
-	$: deleteAdminMessage = form?.deleteAdmin?.message || ([] as string[])
+	$: deleteAdminMessage = form?.deleteAdmin?.message || ([] as string[]);
 	$: deleteAdminSuccess = form?.deleteAdmin?.success || false;
 
 	// this variable detects whether the logged in user is superuser and has superuser privileges
