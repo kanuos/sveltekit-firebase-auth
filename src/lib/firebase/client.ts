@@ -1,5 +1,5 @@
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset } from 'firebase/auth';
 import {
     PUBLIC_API_KEY,
     PUBLIC_APP_ID,
@@ -32,5 +32,7 @@ const auth = getAuth(app);
 export const fireClient = {
     auth,
     signIn: signInWithEmailAndPassword,
-    reset: sendPasswordResetEmail
+    reset: sendPasswordResetEmail,
+    verifyReset: verifyPasswordResetCode,
+    confirmReset: confirmPasswordReset
 };

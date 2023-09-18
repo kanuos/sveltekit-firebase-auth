@@ -15,6 +15,10 @@ export enum URL_Patterns {
     addAdminAction = "/dashboard?/add",
     deleteAdminAction = "/dashboard?/delete",
 
+    // forgot-reset actions
+    forgotAction = "?/forgot-password",
+    resetAction = "?/reset-password",
+
 }
 
 
